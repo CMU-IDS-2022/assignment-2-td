@@ -14,7 +14,7 @@ import altair as alt
 
 
 ## Reading the file to get dataset
-filename = "/Users/dishapoddar/Downloads/medals(final).xlsx"
+filename = "medals(final).xlsx"
 data = pd.read_excel(filename, header = 1)
 
 
