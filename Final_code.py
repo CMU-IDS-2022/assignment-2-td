@@ -25,7 +25,6 @@ show_SliderByYear = st.sidebar.checkbox("Show the Slider by Year")
 #displaying all the olympic detail in one chart
 #using the bar chart format
 st.title("OLYMPIC HISTORY ANALYSIS (1976 - 1988)")
-st.title("Please select which chart you would like to visualize")
 st.write("Firstly, we decided on providing an overall overview of the history of Olympic games from 1976-1988 of representation of different genders in various sports across all years. As the user hovers over the bar they can get even more detailed information on the athlete, their gender, their country of origin, the year they participated in and the country.") 
 Overall_data = alt.Chart(data).mark_bar().encode(
 #setting the x-axis and the y-axis
@@ -36,13 +35,15 @@ color ='Gender',
 tooltip =('Country','Year','Athlete','Gender','Medal')
 ).properties(width =700,height =700,
 title ='Olympic history').interactive()
-st.subheader("Olympic history")
     
 Overall_data
+st.subheader("Please select on the side bar which chart you would like to visualize")
 
 #Interactive legend
 #create a selection feature-making the area interactive
 if show_InteractiveLegend:
+    st.write("We decided to use an interactive legend including the different sports played across olympic games from 1976-1988. According to the user’s choice they can select the sport to display and the section will accordingly be bolded to display the medal tally of that country for the respective olympic years. 
+    ")
     selection = alt.selection_multi(fields=['Sport'], bind='legend')
     click_by_sport = alt.Chart(data).mark_area().encode(
     #setting the x axis
@@ -62,7 +63,9 @@ if show_InteractiveLegend:
 #Multiline Highlight
 #Prompt:trend of the number of Men and women who have participated in the Olypic games and won medals 
 if show_MultiLine:
-#creating the selection 
+#creating the selection
+    st.write("we wanted to understand the gender disparity in medals won across different countries. The interactive line graph, helps the user clearly hover over the line which gets bolded to understand and clearly point towards the disparity that exists between medal tally across countries between men and women. 
+    ")
     highlight = alt.selection(type='single', on='mouseover',fields=['Gender'], nearest=True)
 #setting x and y axis for the chart using altair
     foundation = alt.Chart(data).encode(x='Country',y='count(Medal)', color='Gender:N')
@@ -89,6 +92,8 @@ data['Athlete count'] = data.groupby(['Sport','Gender'])['Athlete'].transform('c
 
 ## Number of athletes male and female in each sport and their medal count for gold, silver and bronze
 if show_Histogram:
+    st.write("we created a multi view coordination chart. The chart on the left showed the number of male and women athletes across different sports. And when the user chooses one point male or female, it will showcase the medal count for the medals - gold, silver and bronze for male and female respectively. 
+ ")
     selector = alt.selection_single(empty='all', fields=['Gender'])
 
     color_scale = alt.Scale(domain=['Men', 'Women'],
@@ -113,6 +118,8 @@ if show_Histogram:
 
 ##hover over the area to find the distrbution of medal in country and then displays the country and exact medal count 
 if show_Distribution:
+    st.write(" we focused on incorporating the medal count for different medals for all the countries participating in the different olympic games from 1976-1988. When a certain area on the graph is selected with the brush tool the bottom chart will display the countries and their total medal count across all 4 olympic games depending on the user selection on the top chart.
+    ")
     brush = alt.selection(type='interval')
 
     foundation = alt.Chart(data).properties(width=700, height=700).add_selection(brush)
@@ -141,6 +148,7 @@ if show_Distribution:
 ## Select year to learn about the medal distribution for each sport 
 if show_SliderByYear:
 # Slider by year 
+    st.write("Users are provided a slider feature to choose which Olympic games sport and medal tally they would like to see. This chart shows the progress and increase in the number of medals given out in some sports in later years. ")
     slider_year = alt.binding_range(min=1976, max=1988, step=4)
     year = alt.selection_single(name="year", fields=['Year'], bind=slider_year)
 # Display chart 
