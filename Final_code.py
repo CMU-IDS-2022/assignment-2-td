@@ -14,7 +14,7 @@ import altair as alt
 
 
 ## Reading the file to get dataset
-data = pd.read_csv("/Users/trishakalia/Desktop/final.csv")
+data = pd.read_csv("final.csv")
 data
 #data = pd.read_csv('/Users/dishapoddar/Desktop/Interactive Assignment 2/Summer-Olympic-medals-1976-to-2008.csv')
 #data
