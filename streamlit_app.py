@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[53]:
+# In[18]:
 
 
 ## Importing libraries for loading data and making graphical representations
@@ -10,32 +10,33 @@ import pandas as pd
 import altair as alt
 
 
-# In[54]:
+
+# In[19]:
 
 
 ## Reading the file to get dataset
-filename = "medals(final).xlsx"
+filename = "/Users/dishapoddar/Downloads/medals(final).xlsx"
 data = pd.read_excel(filename, header = 1)
 
 
-# In[55]:
+# In[20]:
 
 
 data= data.dropna()
 
 
-# In[56]:
+# In[21]:
 
 
 st.set_page_config(
-    page_title="OLYMPIC HISTORY DATA EXPLORATION",
-    page_icon="🌍",
+    page_title ="OLYMPIC HISTORY DATA EXPLORATION",
+    icon_page ="🌍",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar ="expanded",
 )
 
 
-# In[57]:
+# In[ ]:
 
 
 #show_OverallOlympicHistory = st.sidebar.checkbox("Show Olympic history")
@@ -46,7 +47,7 @@ show_Distribution = st.sidebar.checkbox("Show the Distribution")
 show_SliderByYear = st.sidebar.checkbox("Show the Slider by Year")
 
 
-# In[58]:
+# In[ ]:
 
 
 #displaying all the olympic detail in one chart
@@ -67,7 +68,7 @@ st.subheader("Olympic history")
 Overall_data
 
 
-# In[59]:
+# In[ ]:
 
 
 #Interactive legend
@@ -90,7 +91,7 @@ if show_InteractiveLegend:
     click_by_sport
 
 
-# In[60]:
+# In[22]:
 
 
 #Multiline Highlight
@@ -108,7 +109,7 @@ if show_MultiLine:
     plot + connectors
 
 
-# In[61]:
+# In[23]:
 
 
 ##  Grouping by to create 2 new columns used for the graphical representations 
@@ -126,7 +127,7 @@ data['Athlete count'] = data.groupby(['Sport','Gender'])['Athlete'].transform('c
 #data.head()
 
 
-# In[62]:
+# In[24]:
 
 
 ## Number of athletes male and female in each sport and their medal count for gold, silver and bronze
@@ -154,7 +155,7 @@ if show_Histogram:
     plots | histogram
 
 
-# In[63]:
+# In[25]:
 
 
 ##hover over the area to find the distrbution of medal in country and then displays the country and exact medal count 
@@ -184,6 +185,10 @@ if show_Distribution:
     st.subheader("Hover over the area to find the distrbution of medal in country and then displays the country and exact medal count ")
     plot & bar_chart
 
+
+# In[26]:
+
+
 ## Select year to learn about the medal distribution for each sport 
 if show_SliderByYear:
 # Slider by year 
@@ -195,4 +200,9 @@ if show_SliderByYear:
     st.subheader("Select year to learn about the medal distribution for each sport ")
     bar_chart
 
-st.markdown("This project was created by Student1 and Student2 for the [Interactive Data Science](https://dig.cmu.edu/ids2022) course at [Carnegie Mellon University](https://www.cmu.edu).")
+
+# In[ ]:
+
+
+
+
