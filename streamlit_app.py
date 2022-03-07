@@ -15,7 +15,7 @@ import altair as alt
 
 
 ## Reading the file to get dataset
-data = pd.read_csv('Medals(1).csv')
+data = pd.read_csv('olympic_medals.csv')
 
 
 # In[20]:
