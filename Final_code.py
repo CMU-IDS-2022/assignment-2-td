@@ -43,12 +43,12 @@ data= data.dropna()
 # In[39]:
 
 
-st.set_page_config(
-    page_title ="OLYMPIC HISTORY DATA EXPLORATION",
-    page_icon ="🌍",
-    layout="wide",
-    initial_sidebar_state ="expanded",
-)
+# st.set_page_config(
+#     page_title ="OLYMPIC HISTORY DATA EXPLORATION",
+#     page_icon ="🌍",
+#     layout="wide",
+#     initial_sidebar_state ="expanded",
+# )
 
 
 # In[40]:
