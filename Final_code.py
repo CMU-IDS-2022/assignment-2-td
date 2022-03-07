@@ -9,66 +9,24 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
-
-# In[35]:
-
-
 ## Reading the file to get dataset
 data = pd.read_csv("final.csv")
-data
-#data = pd.read_csv('/Users/dishapoddar/Desktop/Interactive Assignment 2/Summer-Olympic-medals-1976-to-2008.csv')
-#data
-
-
-# In[36]:
-
-
 data.drop(index=data.index[-11000:], 
         axis=0, 
         inplace=True)
-
-
-# In[37]:
-
-
-data
-
-
-# In[38]:
-
-
 data= data.dropna()
 
-
-# In[39]:
-
-
-# st.set_page_config(
-#     page_title ="OLYMPIC HISTORY DATA EXPLORATION",
-#     page_icon ="🌍",
-#     layout="wide",
-#     initial_sidebar_state ="expanded",
-# )
-
-
-# In[40]:
-
-
-#show_OverallOlympicHistory = st.sidebar.checkbox("Show Olympic history")
 show_InteractiveLegend = st.sidebar.checkbox("Show Interactive Legend")
 show_MultiLine = st.sidebar.checkbox("Show Multiline highlight")
 show_Histogram = st.sidebar.checkbox("Show the histogram according to plot")
 show_Distribution = st.sidebar.checkbox("Show the Distribution")
 show_SliderByYear = st.sidebar.checkbox("Show the Slider by Year")
 
-
-# In[41]:
-
-
 #displaying all the olympic detail in one chart
 #using the bar chart format
 st.title("OLYMPIC HISTORY ANALYSIS (1976 - 1988)")
 st.title("Please select which chart you would like to visualize")
+st.write("Firstly, we decided on providing an overall overview of the history of Olympic games from 1976-1988 of representation of different genders in various sports across all years. As the user hovers over the bar they can get even more detailed information on the athlete, their gender, their country of origin, the year they participated in and the country.") 
 Overall_data = alt.Chart(data).mark_bar().encode(
 #setting the x-axis and the y-axis
 x ='count(Athlete)',
@@ -81,10 +39,6 @@ title ='Olympic history').interactive()
 st.subheader("Olympic history")
     
 Overall_data
-
-
-# In[48]:
-
 
 #Interactive legend
 #create a selection feature-making the area interactive
@@ -105,10 +59,6 @@ if show_InteractiveLegend:
 
     click_by_sport
 
-
-# In[49]:
-
-
 #Multiline Highlight
 #Prompt:trend of the number of Men and women who have participated in the Olypic games and won medals 
 if show_MultiLine:
@@ -123,10 +73,6 @@ if show_MultiLine:
     st.subheader("Hover over the plot to find the comparison of the number of Male and Female participants who have won medals at the Olympic")
     plot + connectors
 
-
-# In[50]:
-
-
 ##  Grouping by to create 2 new columns used for the graphical representations 
 
 # Total medal count by country 
@@ -140,10 +86,6 @@ data['Athlete count'] = data.groupby(['Sport','Gender'])['Athlete'].transform('c
 
 # Printing top 5 rows of the dataset 
 #data.head()
-
-
-# In[45]:
-
 
 ## Number of athletes male and female in each sport and their medal count for gold, silver and bronze
 if show_Histogram:
@@ -168,10 +110,6 @@ if show_Histogram:
     st.subheader("Select the point in the plot to find the Count of Male and Female Athletes in each sport who have won medals in each sport")
 
     plots | histogram
-
-
-# In[46]:
-
 
 ##hover over the area to find the distrbution of medal in country and then displays the country and exact medal count 
 if show_Distribution:
@@ -200,10 +138,6 @@ if show_Distribution:
     st.subheader("Hover over the area to find the distrbution of medal in country and then displays the country and exact medal count ")
     plot & bar_chart
 
-
-# In[47]:
-
-
 ## Select year to learn about the medal distribution for each sport 
 if show_SliderByYear:
 # Slider by year 
@@ -215,8 +149,6 @@ if show_SliderByYear:
     st.subheader("Select year to learn about the medal distribution for each sport ")
     bar_chart
 
-
-# In[ ]:
 
 
 
